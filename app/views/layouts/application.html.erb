@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Offline Rails App</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  
+  <!-- PWA Manifest -->
+  <%= tag.link rel: "manifest", href: asset_path("manifest.json") %>
+  <meta name="theme-color" content="#222222">
+  
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+</head>
+<body>
+  <!-- Online/Offline Status -->
+  <div class="online-status" id="onlineStatus">Checking...</div>
+  
+  <%= yield %>
+  
+  <script>
+    // Update online status display
+    function updateOnlineStatus() {
+      const statusElement = document.getElementById('onlineStatus');
+      if (statusElement) {
+        statusElement.textContent = navigator.onLine ? 'Online' : 'Offline';
+        statusElement.className = navigator.onLine ? 'online-status online' : 'online-status offline';
+      }
+    }
+    
+    window.addEventListener('online', updateOnlineStatus);
+    window.addEventListener('offline', updateOnlineStatus);
+    updateOnlineStatus(); // Set initial status
+  </script>
+</body>
+</html>

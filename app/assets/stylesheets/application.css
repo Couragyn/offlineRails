@@ -1,0 +1,40 @@
+/* Online/Offline status indicator */
+.online-status {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-size: 12px;
+  z-index: 1000;
+  background: white;
+  border: 1px solid #ddd;
+}
+
+.online-status.online {
+  color: green;
+  font-weight: bold;
+}
+
+.online-status.offline {
+  color: red;
+  font-weight: bold;
+}
+
+body.offline {
+  opacity: 0.8;
+}
+
+body.offline::before {
+  content: "⚠️ Offline";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #ffeb3b;
+  color: #856404;
+  text-align: center;
+  padding: 5px;
+  font-size: 14px;
+  z-index: 1001;
+}

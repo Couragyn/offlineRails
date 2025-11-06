@@ -1,4 +1,3 @@
-// public/service-worker.js
 importScripts('/workbox/workbox-sw.js');
 
 workbox.setConfig({
